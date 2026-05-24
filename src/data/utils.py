@@ -4,6 +4,7 @@ from typing import Dict
 import numpy as np
 import torch
 import torch.distributed as dist
+import os
 
 from .arxiv import get_arxiv_2000, get_arxiv_full
 from .benchmarks import SUPPORTED_TASK_MAP
@@ -52,6 +53,12 @@ def get_dataset(args) -> Dict[str, np.ndarray]:
         return get_c4_data(args.datasets_dir)
     if args.dataset in SUPPORTED_TASK_MAP:
         return get_benchmark_task(args.dataset)
+    if args.dataset == "tinystories":
+        data_dir = os.path.join(args.datasets_dir, "tinystories")
+        return {
+            "train": os.path.join(data_dir, "train.bin"),
+            "val": os.path.join(data_dir, "val.bin")
+        }
     else:
         raise NotImplementedError(f"Unknow dataset key '{args.dataset}'")
 

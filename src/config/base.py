@@ -237,6 +237,7 @@ def parse_args(base_parser, args, namespace):
             "kodcode",
             "mathqa",
             "medqa",
+            "tinystories"
         ],
     )
     parser.add_argument(
