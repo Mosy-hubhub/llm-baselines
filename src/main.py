@@ -30,6 +30,7 @@ from optim.scion import Scion, ScionLight, scion_partitions
 from optim.sign import Signum
 from optim.soap import SOAP
 from optim.sophia import SophiaG
+from optim.refined_sf import RefinedSFAdamW  # new
 
 
 def get_args():
@@ -212,6 +213,17 @@ def main(args, parser):
             r=args.schedulefree_r,
             weight_lr_power=args.weight_lr_power,
         )  # without foreach argument
+    ############# new
+    elif args.opt == "refined-sf-adamw":
+        opt = RefinedSFAdamW(
+            group_specs,
+            lr=args.lr,
+            betas=(args.beta1, args.beta2),
+            weight_decay=args.weight_decay,
+            warmup_steps=args.warmup_steps,
+            c_factor=args.schedulefree_c,
+        )
+    #############
     elif args.opt == "sf-sgd":
         opt = SGDScheduleFree(
             group_specs,

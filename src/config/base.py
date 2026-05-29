@@ -103,6 +103,7 @@ def parse_args(base_parser, args, namespace):
             "scion-light",
             "d-muon",
             "muon-pytorch",  # works only with torch>=2.9
+            "refined-sf-adamw",  # new
         ],
     )
     parser.add_argument("--batch_size", default=50, type=int)
@@ -130,6 +131,7 @@ def parse_args(base_parser, args, namespace):
     parser.add_argument("--adema_beta3_warmup", default=None, type=int)
     parser.add_argument("--adema_alpha_warmup", default=None, type=int)
     parser.add_argument("--schedulefree_r", default=0.0, type=float)
+    parser.add_argument("--schedulefree_c", default=200.0, type=float) # new
     parser.add_argument("--weight_lr_power", default=2.0, type=float)
     parser.add_argument("--dampening", default=0.0, type=float)
     parser.add_argument("--prodigy_beta3", default=None, type=float)
